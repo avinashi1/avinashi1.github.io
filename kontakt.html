@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -48,7 +48,9 @@
                 <div class="Oferta contact-card contact-card-centered">
                     <h3>Napisz do mnie</h3>
                     <p>Pola oznaczone jako wymagane muszą zostać uzupełnione.</p>
-                    <form id="contact-form">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="38fab788-b642-48b0-b053-6440c1f015c4">
+
                         <label for="fullName">Imię i nazwisko</label>
                         <input id="fullName" name="fullName" type="text" required placeholder="Jan Kowalski*">
 
