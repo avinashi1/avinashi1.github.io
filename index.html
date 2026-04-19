@@ -11,7 +11,7 @@
 
 <nav class="nav">
     <div class="nav-inner">
-        <a href="#main" class="nav-logo">Psycho<span>dietetyka</span></a>
+        <a href="#main" class="nav-logo">Lo<span>go</span></a>
         <div class="nav-links" id="navLinks">
             <a href="#main" class="nav-link">Główna</a>
             <a href="#about" class="nav-link">O mnie</a>
@@ -200,7 +200,7 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
-            <div class="footer-logo">Psychodietetyka</div>
+            <div class="footer-logo"></div>
             <nav class="footer-links">
                 <a href="#main">Główna</a>
                 <a href="#about">O mnie</a>
@@ -210,7 +210,7 @@
             </nav>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Psychodietetyka. Wszelkie prawa zastrzeżone.</p>
+            <p>&copy; 2025 Wszelkie prawa zastrzeżone.</p>
         </div>
     </div>
 </footer>
@@ -220,5 +220,82 @@
         <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
 </button>
+
+<script>
+    // Nav scroll
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        highlightNavLink();
+    });
+
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function closeMobileMenu() {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navLinks.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isOpen);
+        navLinks.classList.toggle('open');
+        navOverlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+    navOverlay.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-link');
+    function highlightNavLink() {
+        const scrollY = window.scrollY + 150;
+        sections.forEach(s => {
+            if (scrollY >= s.offsetTop && scrollY < s.offsetTop + s.offsetHeight) {
+                navItems.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${s.id}`));
+            }
+        });
+    }
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const inner = item.querySelector('.faq-answer-inner');
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+            document.querySelectorAll('.faq-item.active').forEach(a => {
+                if (a !== item) {
+                    a.querySelector('.faq-answer').style.maxHeight = '0';
+                    a.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    a.classList.remove('active');
+                }
+            });
+
+            btn.setAttribute('aria-expanded', !isOpen);
+            item.classList.toggle('active', !isOpen);
+            answer.style.maxHeight = isOpen ? '0' : inner.scrollHeight + 30 + 'px';
+        });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
