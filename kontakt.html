@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Psychodietetyka</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav" role="navigation" aria-label="Nawigacja glowna">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Psycho<span>dietetyka</span></a>
+            <div class="nav-links">
+                <a class="nav-link" href="index.html#main">Glowna</a>
+                <a class="nav-link" href="index.html#about">O mnie</a>
+                <a class="nav-link" href="index.html#services">Oferta</a>
+                <a class="nav-link" href="index.html#faq">FAQs</a>
+                <a class="nav-link active" href="kontakt.html">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="informacje-kontaktowe">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">Kontakt i wsparcie</span>
+                    <h1 class="hero-title">Masz pytania? <em>Napisz</em> lub umow termin konsultacji</h1>
+                    <p class="hero-description">
+                        Zapraszam do kontaktu przez formularz na stronie albo przez media spolecznosciowe.
+                        Odpowiadam mozliwie szybko i pomagam dobrac najlepsza forme wspolpracy.
+                    </p>
+                    <div class="hero-buttons">
+                        <a class="btn" href="#formularz-kontaktowy">Przejdz do formularza</a>
+                        <a class="btn btn-secondary" href="#rezerwacja-konsultacji">Umow konsultacje</a>
+                    </div>
+                    <div class="hero-buttons" style="margin-top: 1rem;">
+                        <a class="contact-item-icon" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5Zm8.95 1.35a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"></path>
+                            </svg>
+                        </a>
+                        <a class="contact-item-icon" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 4V11H8v3h2.7v8h2.8Z"></path>
+                            </svg>
+                        </a>
+                        <a class="contact-item-icon" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M14.6 3h2.8c.2 1.7 1.2 3.1 2.6 3.8v2.9a7.1 7.1 0 0 1-2.6-1V15a6 6 0 1 1-6-6h.1v2.9h-.1a3.1 3.1 0 1 0 3.2 3.1V3Z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formularz-kontaktowy">
+            <div class="container">
+                <h2 class="section-title">Formularz kontaktowy</h2>
+                <p class="section-subtitle">Pola oznaczone gwiazdka sa wymagane.</p>
+                <div class="contact-grid" style="margin-top: 1.2rem; grid-template-columns: 1fr;">
+                    <div class="contact-form">
+                        <h3>Napisz do mnie</h3>
+                        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="38fab788-b642-48b0-b053-6440c1f015c4">
+
+                            <div class="form-group">
+                                <label for="fullName">Imie i nazwisko *</label>
+                                <input id="fullName" name="fullName" type="text" required placeholder="Jan Kowalski">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input id="email" name="email" type="email" required placeholder="jan@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input id="phone" name="phone" type="tel" placeholder="+48 500 000 000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inquiry">Wiadomosc *</label>
+                                <textarea id="inquiry" name="inquiry" rows="4" required placeholder="Wpisz tresc wiadomosci"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="consent" class="consent-inline">
+                                    <input id="consent" name="consent" type="checkbox" required>
+                                    <span>Wyrazam zgode na przetwarzanie danych osobowych.</span>
+                                </label>
+                            </div>
+
+                            <button class="btn form-submit" type="submit">Wyslij wiadomosc</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rezerwacja-konsultacji">
+            <div class="container">
+                <h2 class="section-title">Rezerwacja konsultacji</h2>
+                <div class="contact-form">
+                    <h3>Rezerwacja spotkania</h3>
+                    <p>Wybierz dogodny termin konsultacji online przez Calendly.</p>
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/avinashi1-tuta/new-meeting" style="min-width:320px;height:700px;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Psychodietetyka</div>
+                <nav class="footer-links" aria-label="Nawigacja w stopce">
+                    <a href="index.html">Glowna</a>
+                    <a href="index.html#services">Oferta</a>
+                    <a href="index.html#faq">FAQs</a>
+                    <a href="kontakt.html">Kontakt</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Psychodietetyka. Wszelkie prawa zastrzezone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</body>
+</html>
