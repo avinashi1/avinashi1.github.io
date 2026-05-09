@@ -11,15 +11,19 @@
     <nav class="nav" role="navigation" aria-label="Nawigacja glowna">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo">Na<span>zwa</span></a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a class="nav-link" href="index.html#main">Glowna</a>
                 <a class="nav-link" href="index.html#about">O mnie</a>
                 <a class="nav-link" href="index.html#services">Oferta</a>
                 <a class="nav-link" href="index.html#faq">FAQs</a>
                 <a class="nav-link active" href="kontakt.html">Kontakt</a>
             </div>
+            <button class="nav-toggle" id="navToggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Otworz menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <main>
         <section class="hero" id="informacje-kontaktowe">
@@ -35,7 +39,7 @@
                         <a class="btn" href="#formularz-kontaktowy">Przejdz do formularza</a>
                         <a class="btn btn-secondary" href="#rezerwacja-konsultacji">Umow konsultacje</a>
                     </div>
-                    <div class="hero-buttons" style="margin-top: 1rem;">
+                    <div class="social-links" aria-label="Media spolecznosciowe">
                         <a class="contact-item-icon" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5Zm8.95 1.35a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"></path>
