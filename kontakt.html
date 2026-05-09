@@ -10,7 +10,7 @@
 <body>
     <nav class="nav" role="navigation" aria-label="Nawigacja glowna">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">Lo<span>go</span></a>
+            <a href="index.html" class="nav-logo">Na<span>zwa</span></a>
             <div class="nav-links">
                 <a class="nav-link" href="index.html#main">Glowna</a>
                 <a class="nav-link" href="index.html#about">O mnie</a>
@@ -65,34 +65,32 @@
                         <h3>Napisz do mnie</h3>
                         <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
                             <input type="hidden" name="access_key" value="38fab788-b642-48b0-b053-6440c1f015c4">
+                            
+                            <!-- Honeypot: boty wypełniają ukryte pola, Web3Forms odrzuca takie zgłoszenia -->
+                            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
                             <div class="form-group">
                                 <label for="fullName">Imie i nazwisko *</label>
-                                <input id="fullName" name="fullName" type="text" required placeholder="Jan Kowalski">
+                                <input id="fullName" name="fullName" type="text" required placeholder="Jan Kowalski" autocomplete="name">
                             </div>
-
                             <div class="form-group">
                                 <label for="email">E-mail *</label>
-                                <input id="email" name="email" type="email" required placeholder="jan@email.com">
+                                <input id="email" name="email" type="email" required placeholder="jan@email.com" autocomplete="email">
                             </div>
-
                             <div class="form-group">
                                 <label for="phone">Telefon</label>
-                                <input id="phone" name="phone" type="tel" placeholder="+48 500 000 000">
+                                <input id="phone" name="phone" type="tel" placeholder="+48 500 000 000" autocomplete="tel">
                             </div>
-
                             <div class="form-group">
                                 <label for="inquiry">Wiadomosc *</label>
                                 <textarea id="inquiry" name="inquiry" rows="4" required placeholder="Wpisz tresc wiadomosci"></textarea>
                             </div>
-
                             <div class="form-group">
                                 <label for="consent" class="consent-inline">
                                     <input id="consent" name="consent" type="checkbox" required>
-                                    <span>Wyrazam zgode na przetwarzanie danych osobowych.</span>
+                                    <span id="druczek">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą o ochronie danych osobowych w związku z wysłaniem zapytania przez powyższy formularz kontaktowy. Podanie danych jest dobrowolne, ale niezbędne do przetworzenia zapytania. Zostałem poinformowany, że przysługuje mi prawo dostępu do moich danych, możliwości ich poprawiania, żądania zaprzestania ich przetwarzania. Więcej informacji <a href="polityka.html">tutaj</a>.</span>
                                 </label>
                             </div>
-
                             <button class="btn form-submit" type="submit">Wyslij wiadomosc</button>
                         </form>
                     </div>
@@ -115,12 +113,13 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo"></div>
+                <div class="footer-logo">Nazwa</div>
                 <nav class="footer-links" aria-label="Nawigacja w stopce">
                     <a href="index.html">Glowna</a>
                     <a href="index.html#services">Oferta</a>
                     <a href="index.html#faq">FAQs</a>
                     <a href="kontakt.html">Kontakt</a>
+                    <a href="polityka.html">Polityka prywatności</a>
                 </nav>
             </div>
             <div class="footer-bottom">
@@ -130,5 +129,83 @@
     </footer>
 
     <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+    // Nav scroll
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        highlightNavLink();
+    });
+
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function closeMobileMenu() {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navLinks.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isOpen);
+        navLinks.classList.toggle('open');
+        navOverlay.classList.toggle('active');
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+    navOverlay.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-link');
+    function highlightNavLink() {
+        const scrollY = window.scrollY + 150;
+        sections.forEach(s => {
+            if (scrollY >= s.offsetTop && scrollY < s.offsetTop + s.offsetHeight) {
+                navItems.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${s.id}`));
+            }
+        });
+    }
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const inner = item.querySelector('.faq-answer-inner');
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+            document.querySelectorAll('.faq-item.active').forEach(a => {
+                if (a !== item) {
+                    a.querySelector('.faq-answer').style.maxHeight = '0';
+                    a.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    a.classList.remove('active');
+                }
+            });
+
+            btn.setAttribute('aria-expanded', !isOpen);
+            item.classList.toggle('active', !isOpen);
+            answer.style.maxHeight = isOpen ? '0' : inner.scrollHeight + 30 + 'px';
+        });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
